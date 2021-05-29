@@ -18,9 +18,9 @@
       "via": "hiring_contract"
     },
     "hired": {
+      "via": "hiring_contract",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "hiring_contract"
+      "model": "user"
     },
     "description": {
       "type": "text"

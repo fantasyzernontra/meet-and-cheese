@@ -93,9 +93,16 @@
       "via": "hired",
       "model": "hiring-contracts"
     },
-    "chat_room": {
+    "chat_rooms": {
+      "collection": "chat-room",
       "via": "users",
-      "model": "chat-room"
+      "dominant": true
+    },
+    "gender": {
+      "type": "string"
+    },
+    "birth_date": {
+      "type": "date"
     }
   }
 }

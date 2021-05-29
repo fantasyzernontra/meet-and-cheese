@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hiring_contracts",
+  "info": {
+    "name": "Hiring Contracts",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hirer": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "hiring_contract"
+    },
+    "hired": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "hiring_contract"
+    },
+    "description": {
+      "type": "text"
+    },
+    "start_date": {
+      "type": "datetime"
+    },
+    "end_date": {
+      "type": "datetime"
+    },
+    "title": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    }
+  }
+}

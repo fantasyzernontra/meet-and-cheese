@@ -71,8 +71,31 @@
       "required": false,
       "pluginOptions": {}
     },
+    "comments": {
+      "collection": "comment",
+      "via": "user"
+    },
+    "biography": {
+      "type": "text"
+    },
+    "ratings": {
+      "collection": "rating",
+      "via": "user"
+    },
     "user_type": {
-      "type": "integer"
+      "model": "user-type"
+    },
+    "posts": {
+      "collection": "post",
+      "via": "user"
+    },
+    "hiring_contract": {
+      "via": "hired",
+      "model": "hiring-contracts"
+    },
+    "chat_room": {
+      "via": "users",
+      "model": "chat-room"
     }
   }
 }

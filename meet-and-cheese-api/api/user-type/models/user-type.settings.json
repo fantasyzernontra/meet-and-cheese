@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_types",
+  "info": {
+    "name": "User Type",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": "User",
+      "required": true,
+      "unique": true
+    },
+    "type": {
+      "type": "integer",
+      "default": 1,
+      "required": true,
+      "unique": true
+    }
+  }
+}

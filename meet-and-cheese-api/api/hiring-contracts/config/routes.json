@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/hiring-contracts",
+      "handler": "hiring-contracts.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hiring-contracts/count",
+      "handler": "hiring-contracts.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hiring-contracts/:id",
+      "handler": "hiring-contracts.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/hiring-contracts",
+      "handler": "hiring-contracts.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/hiring-contracts/:id",
+      "handler": "hiring-contracts.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/hiring-contracts/:id",
+      "handler": "hiring-contracts.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

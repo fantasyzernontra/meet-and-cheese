@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rating",
+  "info": {
+    "name": "Rating",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "rate": {
+      "type": "float"
+    },
+    "user": {
+      "via": "ratings",
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

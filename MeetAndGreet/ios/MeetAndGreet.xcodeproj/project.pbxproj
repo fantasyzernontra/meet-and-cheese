@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		004FAD60519AC090307808D9 /* libPods-MeetAndGreet-MeetAndGreetTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D7B744E1ADB41CE199DDDC1 /* libPods-MeetAndGreet-MeetAndGreetTests.a */; };
 		00E356F31AD99517003FC87E /* MeetAndGreetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MeetAndGreetTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		636B3E865F91C0F475291639 /* libPods-MeetAndGreet-MeetAndGreetTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01620594EBFB6A3D91BCF6C9 /* libPods-MeetAndGreet-MeetAndGreetTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B39C46C29A0ED468D0F99B9F /* libPods-MeetAndGreet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6059BC54B3A1612D5DC3290 /* libPods-MeetAndGreet.a */; };
+		C0E15CCE982E870EC969C331 /* libPods-MeetAndGreet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB844D841F4EB193F817F07 /* libPods-MeetAndGreet.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,23 +27,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		004D1A524A791C73DEC517D9 /* Pods-MeetAndGreet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet.release.xcconfig"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* MeetAndGreetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetAndGreetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MeetAndGreetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeetAndGreetTests.m; sourceTree = "<group>"; };
+		01620594EBFB6A3D91BCF6C9 /* libPods-MeetAndGreet-MeetAndGreetTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeetAndGreet-MeetAndGreetTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* MeetAndGreet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetAndGreet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MeetAndGreet/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MeetAndGreet/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MeetAndGreet/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeetAndGreet/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MeetAndGreet/main.m; sourceTree = "<group>"; };
-		3D7B744E1ADB41CE199DDDC1 /* libPods-MeetAndGreet-MeetAndGreetTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeetAndGreet-MeetAndGreetTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		40194B355C7396B4DBF8D223 /* Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig"; path = "Target Support Files/Pods-MeetAndGreet-MeetAndGreetTests/Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig"; sourceTree = "<group>"; };
-		49607ED573ABF10F4EE6AC49 /* Pods-MeetAndGreet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet.release.xcconfig"; path = "Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet.release.xcconfig"; sourceTree = "<group>"; };
-		710D6216584BD93383DA4AE8 /* Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig"; path = "Target Support Files/Pods-MeetAndGreet-MeetAndGreetTests/Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7C37072235D8B56045653052 /* Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeetAndGreet-MeetAndGreetTests/Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MeetAndGreet/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		99787DD1491CAB79FEDCC99B /* Pods-MeetAndGreet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet.debug.xcconfig"; path = "Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet.debug.xcconfig"; sourceTree = "<group>"; };
-		B6059BC54B3A1612D5DC3290 /* libPods-MeetAndGreet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeetAndGreet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59F54B16BDED0C90567670C /* Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeetAndGreet-MeetAndGreetTests/Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C2BB335001CF89727ECCA590 /* Pods-MeetAndGreet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetAndGreet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FEB844D841F4EB193F817F07 /* libPods-MeetAndGreet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeetAndGreet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				004FAD60519AC090307808D9 /* libPods-MeetAndGreet-MeetAndGreetTests.a in Frameworks */,
+				636B3E865F91C0F475291639 /* libPods-MeetAndGreet-MeetAndGreetTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B39C46C29A0ED468D0F99B9F /* libPods-MeetAndGreet.a in Frameworks */,
+				C0E15CCE982E870EC969C331 /* libPods-MeetAndGreet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B6059BC54B3A1612D5DC3290 /* libPods-MeetAndGreet.a */,
-				3D7B744E1ADB41CE199DDDC1 /* libPods-MeetAndGreet-MeetAndGreetTests.a */,
+				FEB844D841F4EB193F817F07 /* libPods-MeetAndGreet.a */,
+				01620594EBFB6A3D91BCF6C9 /* libPods-MeetAndGreet-MeetAndGreetTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,13 +140,12 @@
 		E6E2AE115E5A79B1E6C73FF9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				99787DD1491CAB79FEDCC99B /* Pods-MeetAndGreet.debug.xcconfig */,
-				49607ED573ABF10F4EE6AC49 /* Pods-MeetAndGreet.release.xcconfig */,
-				710D6216584BD93383DA4AE8 /* Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig */,
-				40194B355C7396B4DBF8D223 /* Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig */,
+				C2BB335001CF89727ECCA590 /* Pods-MeetAndGreet.debug.xcconfig */,
+				004D1A524A791C73DEC517D9 /* Pods-MeetAndGreet.release.xcconfig */,
+				B59F54B16BDED0C90567670C /* Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig */,
+				7C37072235D8B56045653052 /* Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig */,
 			);
 			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,12 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MeetAndGreetTests" */;
 			buildPhases = (
-				B3316CBFCC79F9119AF4BB3D /* [CP] Check Pods Manifest.lock */,
+				8A51F398035D34778E15B55B /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				0E114F252A8A37672695456A /* [CP] Embed Pods Frameworks */,
-				82251B9B6E28F1FBDD337D58 /* [CP] Copy Pods Resources */,
+				03B14DD24D64F4A49A5A9C76 /* [CP] Embed Pods Frameworks */,
+				743FAF2C866743198B64EC7B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,14 +176,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MeetAndGreet" */;
 			buildPhases = (
-				27722B9C8CE725AAF9E06077 /* [CP] Check Pods Manifest.lock */,
+				2CB6D3168E6C40DB53A69F97 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				23962446606ED92C49698FCD /* [CP] Embed Pods Frameworks */,
-				8F2B47526063F4E18095BEFD /* [CP] Copy Pods Resources */,
+				5D5C3FB03B75227E0EEB0B8E /* [CP] Embed Pods Frameworks */,
+				BFBD69D662203586D5225E4A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,7 +200,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -219,6 +218,7 @@
 			knownRegions = (
 				en,
 				Base,
+				th,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -265,7 +265,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		0E114F252A8A37672695456A /* [CP] Embed Pods Frameworks */ = {
+		03B14DD24D64F4A49A5A9C76 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -282,24 +282,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet-MeetAndGreetTests/Pods-MeetAndGreet-MeetAndGreetTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		23962446606ED92C49698FCD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		27722B9C8CE725AAF9E06077 /* [CP] Check Pods Manifest.lock */ = {
+		2CB6D3168E6C40DB53A69F97 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,7 +304,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		82251B9B6E28F1FBDD337D58 /* [CP] Copy Pods Resources */ = {
+		5D5C3FB03B75227E0EEB0B8E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		743FAF2C866743198B64EC7B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,24 +338,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet-MeetAndGreetTests/Pods-MeetAndGreet-MeetAndGreetTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8F2B47526063F4E18095BEFD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3316CBFCC79F9119AF4BB3D /* [CP] Check Pods Manifest.lock */ = {
+		8A51F398035D34778E15B55B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,6 +358,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFBD69D662203586D5225E4A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetAndGreet/Pods-MeetAndGreet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -429,7 +429,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 710D6216584BD93383DA4AE8 /* Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig */;
+			baseConfigurationReference = B59F54B16BDED0C90567670C /* Pods-MeetAndGreet-MeetAndGreetTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -437,7 +437,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MeetAndGreetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,12 +456,12 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40194B355C7396B4DBF8D223 /* Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig */;
+			baseConfigurationReference = 7C37072235D8B56045653052 /* Pods-MeetAndGreet-MeetAndGreetTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = MeetAndGreetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,13 +480,15 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99787DD1491CAB79FEDCC99B /* Pods-MeetAndGreet.debug.xcconfig */;
+			baseConfigurationReference = C2BB335001CF89727ECCA590 /* Pods-MeetAndGreet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9RH5R2UVLM;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MeetAndGreet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -506,12 +508,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49607ED573ABF10F4EE6AC49 /* Pods-MeetAndGreet.release.xcconfig */;
+			baseConfigurationReference = 004D1A524A791C73DEC517D9 /* Pods-MeetAndGreet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9RH5R2UVLM;
 				INFOPLIST_FILE = MeetAndGreet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,7 +581,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -635,7 +639,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",

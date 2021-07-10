@@ -1,10 +1,16 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import usePaddingBottom from '../../utils/usePaddingBottom';
+
+import AccountBox from '../../components/home/ account-box';
+import MiniAccountBox from '../../components/mini-account-box';
 
 const Index = ({}) => {
   const insets = useSafeAreaInsets();
+  const tabBarHeight = useBottomTabBarHeight();
 
   return (
     <SafeAreaView
@@ -15,12 +21,19 @@ const Index = ({}) => {
         paddingBottom: insets.bottom,
         ...styles.safeAreaContainer,
       }}>
-      <View style={styles.container}>
-        <View style={styles.bannerContainer}>
-          <Text style={styles.bannerHeader}>Welcome!</Text>
-          <Text style={styles.bannerSubHeader}>FIRSTNAME LASTNAME</Text>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <View style={styles.menu_container}>
+          <Text>Yo</Text>
+          <MiniAccountBox />
         </View>
-      </View>
+        <Text style={styles.subHeader}>Popular Photographer</Text>
+        {[...Array(2)].map((_, index) => (
+          <AccountBox key={index} />
+        ))}
+        {/* Popular Model */}
+
+        {usePaddingBottom(tabBarHeight)}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -28,32 +41,26 @@ const Index = ({}) => {
 export const screenOptions = {};
 
 const styles = StyleSheet.create({
-  safeAreaContainer: { flex: 1, alignItems: 'center' },
-  container: { flex: 1, width: '100%', padding: 20 },
-  bannerContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    paddingHorizontal: 15,
-    height: 120,
-    backgroundColor: '#DADDCD',
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 1,
-      height: 3,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    elevation: 5,
+  safeAreaContainer: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
-  bannerHeader: {
-    textAlign: 'right',
-    fontSize: 36,
-    fontFamily: 'NanumGothic-Bold',
+  container: { flex: 1, width: '100%' },
+  menu_container: {
+    width: Dimensions.get('screen').width * 0.9,
+    alignSelf: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
-  bannerSubHeader: {
-    textAlign: 'right',
+  subHeader: {
+    fontFamily: 'NanumGothic',
     fontSize: 18,
+    width: Dimensions.get('screen').width * 0.9,
+    alignSelf: 'center',
+    marginTop: 20,
+    fontWeight: '400',
   },
 });
 

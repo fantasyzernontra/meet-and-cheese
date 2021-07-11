@@ -7,15 +7,17 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
+import BlurUtilitiesBar from './blur-utilities-bar';
 
 import Photographer from '../../assets/images/photographer.jpeg';
 
-const AccountBox = ({ picture, name, id, user_type }) => {
+const Post = ({ picture, name, id, user_type }) => {
   return (
     <View
       style={{
         ...styles.container,
       }}>
+      <BlurUtilitiesBar />
       <ImageBackground
         style={styles.imageBackgroundContainer}
         source={Photographer}
@@ -34,6 +36,7 @@ const AccountBox = ({ picture, name, id, user_type }) => {
           />
           <Text style={styles.name}>John Doe</Text>
         </View>
+
         <View style={{ marginVertical: 3 }}>
           <Text style={styles.description} numberOfLines={2}>
             {'\t'}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('screen').width * 0.85,
     flex: 1,
-    height: 400,
+    height: 500,
     shadowColor: '#000',
     shadowOffset: {
       width: 3,
@@ -96,6 +99,18 @@ const styles = StyleSheet.create({
     color: 'lime',
     marginRight: 2,
   },
+  toolContainer: {
+    position: 'absolute',
+    height: '70%',
+    width: '27%',
+    alignSelf: 'center',
+    borderRadius: 20,
+    top: 40,
+    right: -14,
+    zIndex: 1,
+    padding: 20,
+    flexDirection: 'column',
+  },
 });
 
-export default AccountBox;
+export default Post;

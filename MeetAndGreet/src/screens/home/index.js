@@ -5,10 +5,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import usePaddingBottom from '../../utils/usePaddingBottom';
 
-import AccountBox from '../../components/home/ account-box';
+import Post from '../../components/home/post';
 import MiniAccountBox from '../../components/mini-account-box';
 
-const Index = ({}) => {
+const Index = ({ route, navigation }) => {
   const insets = useSafeAreaInsets();
   const tabBarHeight = useBottomTabBarHeight();
 
@@ -22,23 +22,23 @@ const Index = ({}) => {
         ...styles.safeAreaContainer,
       }}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        {/* Menu */}
         <View style={styles.menu_container}>
-          <Text>Yo</Text>
-          <MiniAccountBox />
+          <Text style={styles.title}>Meet And Cheese</Text>
+          <MiniAccountBox navigation={navigation} />
         </View>
-        <Text style={styles.subHeader}>Popular Photographer</Text>
-        {[...Array(2)].map((_, index) => (
-          <AccountBox key={index} />
-        ))}
-        {/* Popular Model */}
 
+        {/* Post */}
+        {[...Array(2)].map((_, index) => (
+          <Post key={index} />
+        ))}
+
+        {/* Padding Bottom */}
         {usePaddingBottom(tabBarHeight)}
       </ScrollView>
     </SafeAreaView>
   );
 };
-
-export const screenOptions = {};
 
 const styles = StyleSheet.create({
   safeAreaContainer: {
@@ -61,6 +61,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
     fontWeight: '400',
+  },
+  title: {
+    fontFamily: 'NanumGothic',
+    fontSize: 20,
+    color: '#00997b',
   },
 });
 

@@ -1,14 +1,33 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import AntdesignIcon from 'react-native-vector-icons/AntDesign';
+
+import { MMKV } from 'react-native-mmkv';
 
 import Profile from '../assets/images/model.jpeg';
 
-const MiniAccountBox = ({}) => {
+const MiniAccountBox = ({ navigation }) => {
+  const isAuth = MMKV.getString('token');
+
   return (
-    <View style={styles.container}>
-      <Image source={Profile} resizeMode="cover" style={styles.profile} />
-      <Text style={styles.username}>Panyot</Text>
-    </View>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        isAuth ? navigation.navigate('Profile') : navigation.navigate('Auth')
+      }>
+      {!isAuth && (
+        <AntdesignIcon
+          name="login"
+          size={22}
+          color="#fff"
+          style={{ alignContent: 'flex-start' }}
+        />
+      )}
+      {isAuth && (
+        <Image source={Profile} resizeMode="cover" style={styles.profile} />
+      )}
+      <Text style={styles.username}>{isAuth ? 'Panyot' : 'Sign In'}</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -38,7 +57,7 @@ const styles = StyleSheet.create({
   },
   username: {
     fontFamily: 'NanumGothic',
-    fontSize: 15,
+    fontSize: 16,
     color: '#fff',
   },
 });

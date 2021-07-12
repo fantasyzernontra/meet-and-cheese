@@ -10,4 +10,12 @@ export default {
       MMKV.set('user_type', res.data.user.user_type.type);
     }
   },
+  logout: () => {
+    MMKV.delete('token');
+    MMKV.delete('email');
+    MMKV.delete('user_type');
+  },
+  signup: async (info, user_type) => {
+    const res = await API;
+  },
 };

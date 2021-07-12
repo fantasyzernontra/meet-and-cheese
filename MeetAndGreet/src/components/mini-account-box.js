@@ -19,7 +19,7 @@ const MiniAccountBox = ({ navigation }) => {
         <AntdesignIcon
           name="login"
           size={22}
-          color="#fff"
+          color="#000"
           style={{ alignContent: 'flex-start' }}
         />
       )}
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     width: 110,
     height: 40,
-    backgroundColor: '#00997b',
+    backgroundColor: '#eee',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     flexDirection: 'row',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   username: {
     fontFamily: 'NanumGothic',
     fontSize: 16,
-    color: '#fff',
+    color: '#000',
   },
 });
 

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AntdesignIcon from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -22,9 +23,15 @@ const SignIn = ({}) => {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
 
   const onLogin = async () => {
-    await API.profile.login(email, password);
+    await API.profile
+      .login(email, password)
+      .then(res => navigation.navigate('Home'))
+      .catch(err =>
+        setAlertMessage('Email or Password is incorrect. Please try again...'),
+      );
   };
 
   return (
@@ -42,7 +49,7 @@ const SignIn = ({}) => {
           onPress={() => {
             navigation.navigate('Home');
           }}>
-          <MaterialCommunityIcon name="arrow-left" color="#fff" size={25} />
+          <AntdesignIcon name="left" color="#fff" size={25} />
         </TouchableOpacity>
         <Text style={styles.title}>Meet And Cheese</Text>
         <View style={styles.inputSection}>
@@ -100,6 +107,7 @@ const SignIn = ({}) => {
             onPress={() => setShowPassword(!showPassword)}
           />
         </View>
+        <Text style={styles.alert_message}>{alertMessage}</Text>
         <TouchableOpacity
           style={styles.signin_button}
           activeOpacity={0.6}
@@ -181,9 +189,13 @@ const styles = StyleSheet.create({
   },
   signup_text: {
     fontFamily: 'NanumGothic',
-    color: '#fff',
+    color: '#E3ECFF',
     textDecorationStyle: 'double',
     textDecorationLine: 'underline',
+  },
+  alert_message: {
+    fontFamily: 'NanumGothic',
+    color: '#FF7F7F',
   },
 });
 

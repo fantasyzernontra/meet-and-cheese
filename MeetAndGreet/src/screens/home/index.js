@@ -1,9 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+
 import usePaddingBottom from '../../utils/usePaddingBottom';
+import useForceRender from '../../utils/useForceRender';
 
 import Post from '../../components/home/post';
 import MiniAccountBox from '../../components/mini-account-box';
@@ -11,6 +16,8 @@ import MiniAccountBox from '../../components/mini-account-box';
 const Index = ({ route, navigation }) => {
   const insets = useSafeAreaInsets();
   const tabBarHeight = useBottomTabBarHeight();
+
+  useForceRender(navigation);
 
   return (
     <SafeAreaView

@@ -8,7 +8,10 @@ import {
 } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/core';
+import {
+  getFocusedRouteNameFromRoute,
+  useIsFocused,
+} from '@react-navigation/core';
 import { MMKV } from 'react-native-mmkv';
 
 import HomeScreen from '../screens/home';
@@ -16,6 +19,7 @@ import DiscoverScreen from '../screens/discover';
 import ProfileScreen from '../screens/profile';
 
 import AuthNavigator from './auth-navigator';
+import ProfileNavigator from './profile-navigator';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -86,8 +90,8 @@ const Tabs = ({ route, navigation }) => {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={isAuth ? ProfileScreen : AuthNavigator}
+        name="FakeProfile"
+        component={AuthNavigator}
         options={{
           tabBarIcon: ({ focused, color }) => {
             return (
@@ -120,6 +124,7 @@ const RootStackNavigator = () => {
   return (
     <RootStack.Navigator headerMode="none">
       <RootStack.Screen name="Home" component={Tabs} />
+      <RootStack.Screen name="Profile" component={ProfileNavigator} />
       <RootStack.Screen name="Auth" component={AuthNavigator} />
     </RootStack.Navigator>
   );

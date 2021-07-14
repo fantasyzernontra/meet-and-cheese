@@ -103,6 +103,9 @@
     },
     "birth_date": {
       "type": "date"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

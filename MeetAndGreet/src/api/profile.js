@@ -15,7 +15,16 @@ export default {
     MMKV.delete('email');
     MMKV.delete('user_type');
   },
-  signup: async (info, user_type) => {
-    const res = await API;
+  signup: async info => {
+    const preprocessed_data = info;
+    preprocessed_data.name = info.firstname + info.lastname;
+    const res = await API.post('/auth/local/register', preprocessed_data);
+    if (res) return res;
+  },
+  signup_photographer: async info => {
+    const preprocessed_data = info;
+    preprocessed_data.name = info.firstname + info.lastname;
+    const res = await API.post('/auth/local/register', preprocessed_data);
+    if (res) return res;
   },
 };

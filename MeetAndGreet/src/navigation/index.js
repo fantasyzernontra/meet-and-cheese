@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-  getFocusedRouteNameFromRoute,
-  useIsFocused,
-} from '@react-navigation/core';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/core';
 import { MMKV } from 'react-native-mmkv';
 
 import HomeScreen from '../screens/home';
 import DiscoverScreen from '../screens/discover';
-import ProfileScreen from '../screens/profile';
 
 import AuthNavigator from './auth-navigator';
 import ProfileNavigator from './profile-navigator';
+import AccountNavigator from './account-navigator';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { SECONDARY_COLOR } from '../constant';
 
 const Tab = createBottomTabNavigator();
 const RootStack = createStackNavigator();
@@ -42,18 +35,19 @@ const Tabs = ({ route, navigation }) => {
       initialRouteName="Home"
       backBehavior="history"
       tabBarOptions={{
-        activeTintColor: '#64bfa4',
+        activeTintColor: SECONDARY_COLOR,
         inactiveTintColor: '#000',
         showLabel: false,
         style: {
-          backgroundColor: '#fff',
+          opacity: 0.85,
+          backgroundColor: '#FFF',
           position: 'absolute',
           bottom: selectedScreen !== 'Profile' ? 25 : 0,
-          left: 20,
-          right: 20,
+          left: 40,
+          right: 40,
           elevation: 0,
           borderRadius: 30,
-          height: 100,
+          height: 75,
           ...styles.shadow,
         },
       }}>
@@ -126,6 +120,7 @@ const RootStackNavigator = () => {
       <RootStack.Screen name="Home" component={Tabs} />
       <RootStack.Screen name="Profile" component={ProfileNavigator} />
       <RootStack.Screen name="Auth" component={AuthNavigator} />
+      <RootStack.Screen name="Account" component={AccountNavigator} />
     </RootStack.Navigator>
   );
 };
@@ -138,7 +133,7 @@ const styles = StyleSheet.create({
       height: 6,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.5,
+    shadowRadius: 10,
     elevation: 5,
   },
   iconContainer: {

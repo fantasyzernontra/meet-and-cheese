@@ -22,10 +22,6 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
-    },
-    "post": {
-      "model": "post",
-      "via": "pictures"
     }
   }
 }

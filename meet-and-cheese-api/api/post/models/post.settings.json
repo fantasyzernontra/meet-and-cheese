@@ -42,6 +42,9 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "title": {
+      "type": "string"
     }
   }
 }

@@ -15,8 +15,8 @@
       "type": "text"
     },
     "post": {
-      "model": "post",
-      "via": "comments"
+      "via": "comments",
+      "model": "post"
     },
     "user": {
       "via": "comments",

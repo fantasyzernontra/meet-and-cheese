@@ -4,12 +4,12 @@ import {
   Text,
   ImageBackground,
   TextInput,
-  Button,
+  ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import AntdesignIcon from 'react-native-vector-icons/AntDesign'
+import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -24,15 +24,25 @@ const SignIn = ({}) => {
   const [password, onChangePassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [pending, setPending] = useState(false);
 
   const onLogin = async () => {
+    setPending(true);
     await API.profile
       .login(email, password)
       .then(res => navigation.navigate('Home'))
       .catch(err =>
         setAlertMessage('Email or Password is incorrect. Please try again...'),
       );
+    setPending(false);
   };
+
+  if (pending)
+    return (
+      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+        <ActivityIndicator color="blue" size="large" />
+      </View>
+    );
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
@@ -67,6 +77,7 @@ const SignIn = ({}) => {
           <TextInput
             placeholder="Email"
             style={styles.input}
+            selectionColor="#64bfa4"
             autoCorrect={false}
             autoCapitalize="none"
             onChangeText={onChangeEmail}
@@ -88,6 +99,7 @@ const SignIn = ({}) => {
           <TextInput
             placeholder="Password"
             style={styles.input}
+            selectionColor="#64bfa4"
             autoCorrect={false}
             secureTextEntry={!showPassword}
             autoCapitalize="none"

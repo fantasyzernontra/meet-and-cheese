@@ -26,14 +26,22 @@
       "via": "post",
       "collection": "comment"
     },
-    "pictures": {
-      "via": "post",
-      "collection": "picture"
-    },
     "user": {
       "via": "posts",
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "picture": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     }
   }
 }

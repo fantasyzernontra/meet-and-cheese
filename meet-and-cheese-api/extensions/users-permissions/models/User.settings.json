@@ -86,8 +86,8 @@
       "model": "user-type"
     },
     "posts": {
-      "collection": "post",
-      "via": "user"
+      "via": "user",
+      "collection": "post"
     },
     "hiring_contract": {
       "via": "hired",

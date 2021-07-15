@@ -1,6 +1,7 @@
 import { BlurView } from '@react-native-community/blur';
-import React from 'react';
+import React, { useState } from 'react';
 import {
+  ActivityIndicator,
   View,
   ImageBackground,
   ScrollView,
@@ -11,11 +12,60 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import API from '../../api/path';
+
+import StrapiRole from '../../data/strapi-role';
+import UserType from '../../data/user_type';
 
 import Photographer from '../../assets/images/photographer.jpeg';
 
+import { SECONDARY_COLOR, WHITE_TEXT_COLOR, ERROR_COLOR } from '../../constant';
+
 const SignUp = ({ navigation }) => {
+  const [info, setInfo] = useState({
+    username: '',
+    email: '',
+    password: '',
+    firstname: '',
+    lastname: '',
+    role: {
+      _id: StrapiRole.public,
+    },
+    biography: '',
+    gender: 'M',
+    user_type: {
+      _id: UserType.user,
+    },
+  });
+  const [errMessage, setErrMessage] = useState('');
+  const [pending, setPending] = useState(false);
+
+  const onFill = (name, value) => {
+    setInfo({ ...info, [name]: value });
+  };
+
+  const onSignUp = async () => {
+    setPending(true);
+    const res = await API.profile.signup(info);
+    if (res) {
+      if (res.status === 200) navigation.navigate('Login');
+      else if (res.response.status === 400)
+        setErrMessage('Sign Up is insuccess. Please try again.');
+
+      setPending(false);
+    }
+  };
+
+  if (pending)
+    return (
+      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+        <ActivityIndicator color="blue" size="large" />
+      </View>
+    );
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <ImageBackground
@@ -25,12 +75,20 @@ const SignUp = ({ navigation }) => {
         imageStyle={{
           opacity: 0.3,
         }}>
+        <TouchableOpacity
+          style={styles.back_container}
+          activeOpacity={0.2}
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <AntdesignIcon name="left" color="#fff" size={25} />
+        </TouchableOpacity>
         <Text style={styles.title}>Create{'\n'}an account</Text>
         <TouchableOpacity style={styles.have_an_account_container}>
           <Text
             style={styles.have_an_account}
-            onPress={() => navigation.goBack()}>
-            Have an account already? Sign In
+            onPress={() => navigation.navigate('PhotographerSignup')}>
+            Are you a photographer? Sign Up Here
           </Text>
         </TouchableOpacity>
         <BlurView
@@ -54,10 +112,11 @@ const SignUp = ({ navigation }) => {
               <TextInput
                 placeholder="Email"
                 style={styles.input}
+                selectionColor="#64bfa4"
                 autoCorrect={false}
                 autoCapitalize="none"
-                // onChangeText={onChangeEmail}
-                // value={email}
+                onChangeText={val => onFill('email', val)}
+                value={info.email}
               />
             </View>
             <Text style={styles.input_label}>Username</Text>
@@ -76,10 +135,11 @@ const SignUp = ({ navigation }) => {
               <TextInput
                 placeholder="Username"
                 style={styles.input}
+                selectionColor="#64bfa4"
                 autoCorrect={false}
                 autoCapitalize="none"
-                // onChangeText={onChangeEmail}
-                // value={email}
+                onChangeText={val => onFill('username', val)}
+                value={info.username}
               />
             </View>
             <Text style={styles.input_label}>Password</Text>
@@ -98,10 +158,11 @@ const SignUp = ({ navigation }) => {
               <TextInput
                 placeholder="Password"
                 style={styles.input}
+                selectionColor="#64bfa4"
                 autoCorrect={false}
                 autoCapitalize="none"
-                // onChangeText={onChangeEmail}
-                // value={email}
+                onChangeText={val => onFill('password', val)}
+                value={info.password}
               />
             </View>
             <Text style={styles.input_label}>First Name</Text>
@@ -120,10 +181,11 @@ const SignUp = ({ navigation }) => {
               <TextInput
                 placeholder="Firstname"
                 style={styles.input}
+                selectionColor="#64bfa4"
                 autoCorrect={false}
                 autoCapitalize="none"
-                // onChangeText={onChangeEmail}
-                // value={email}
+                onChangeText={val => onFill('firstname', val)}
+                value={info.firstname}
               />
             </View>
             <Text style={styles.input_label}>Last Name</Text>
@@ -142,21 +204,18 @@ const SignUp = ({ navigation }) => {
               <TextInput
                 placeholder="Lastname"
                 style={styles.input}
+                selectionColor="#64bfa4"
                 autoCorrect={false}
                 autoCapitalize="none"
-                // onChangeText={onChangeEmail}
-                // value={email}
+                onChangeText={val => onFill('lastname', val)}
+                value={info.lastname}
               />
             </View>
-            <TouchableOpacity style={styles.signup_button} activeOpacity={0.6}>
-              <Text style={styles.signup_text}>Sign Up</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.photographer_signup_container}>
-              <Text
-                style={styles.photographer_signup}
-                onPress={() => navigation.navigate('PhotographerSignup')}>
-                Photographer Sign Up
-              </Text>
+            <Text style={styles.err_message}>{errMessage}</Text>
+            <TouchableOpacity onPress={onSignUp} activeOpacity={0.8}>
+              <View style={styles.signup_button}>
+                <Text style={styles.signup_text}>Sign Up</Text>
+              </View>
             </TouchableOpacity>
             <View style={{ height: 150 }} />
           </ScrollView>
@@ -178,12 +237,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'NanumGothic',
-    color: '#fff',
+    color: WHITE_TEXT_COLOR,
     fontWeight: '500',
     fontSize: 42,
     textAlign: 'left',
     alignSelf: 'flex-start',
-    marginTop: 30,
+    marginTop: 20,
   },
   have_an_account_container: {
     alignSelf: 'flex-start',
@@ -238,17 +297,32 @@ const styles = StyleSheet.create({
     width: '80%',
     height: 48,
     borderRadius: 20,
-    backgroundColor: '#64bfa4',
-    marginTop: 40,
+    backgroundColor: SECONDARY_COLOR,
+    marginTop: 25,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
   },
   signup_text: {
     fontFamily: 'NanumGothic',
-    color: '#E3ECFF',
+    color: WHITE_TEXT_COLOR,
     fontSize: 16,
     fontWeight: '500',
+  },
+  err_message: {
+    fontFamily: 'NanumGothic',
+    color: ERROR_COLOR,
+    textAlign: 'center',
+    elevation: 5,
+  },
+  back_container: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  back_text: {
+    fontFamily: 'NanumGothic',
+    paddingLeft: 10,
   },
 });
 

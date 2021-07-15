@@ -15,14 +15,11 @@ const ProfileHeader = ({ name, navigation, onSignOut }) => {
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <FontistoIcon name="angle-left" color="#000" size={20} />
       </TouchableOpacity>
-      <Text style={styles.name}>Jenny Wilson</Text>
+      <Text style={styles.name}>{name}</Text>
       <TouchableOpacity
         onPress={onSignOut}
         style={{ flexDirection: 'row', alignItems: 'center' }}>
         <AntDesign name="logout" color="#000" size={20} />
-        <Text style={{ fontFamily: 'NanumGothic', marginLeft: 5 }}>
-          Log Out
-        </Text>
       </TouchableOpacity>
     </View>
   );

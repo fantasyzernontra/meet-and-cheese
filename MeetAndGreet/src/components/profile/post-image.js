@@ -8,13 +8,16 @@ import {
 } from 'react-native';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 
+import PUBLIC_API from '../../data/public-api';
 import Model from '../../assets/images/model.jpeg';
 
 const PostImage = ({ img, navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={Model}
+        source={{
+          uri: PUBLIC_API + img,
+        }}
         style={styles.image}
         imageStyle={styles.imageStyle}
         resizeMode="cover">

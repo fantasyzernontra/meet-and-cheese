@@ -1,6 +1,4 @@
 export default [
-  { icon_name: 'heart', icon_provider: 'antdesign' },
-  { icon_name: 'message1', icon_provider: 'antdesign' },
-  { icon_name: 'bookmark', icon_provider: 'feather' },
-  { icon_name: 'paper-plane', icon_provider: 'fontawesome' },
+  { icon_name: 'team', icon_provider: 'antdesign' },
+  { icon_name: 'account', icon_provider: 'material_community' },
 ];

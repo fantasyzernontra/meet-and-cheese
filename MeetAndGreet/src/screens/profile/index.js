@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   Image,
   StyleSheet,
   FlatList,
-  Dimensions,
-  ScrollView,
+  ActivityIndicator,
+  Button,
+  Linking,
+  Platform,
 } from 'react-native';
 import {
   SafeAreaView,
@@ -18,16 +20,38 @@ import InfoPanel from '../../components/profile/info-panel';
 import MiniPost from '../../components/mini-post';
 
 import API from '../../api/path';
+import { MMKV } from 'react-native-mmkv';
 
-import Photographer from '../../assets/images/photographer.jpeg';
+import PUBLIC_API from '../../data/public-api';
+import { PRIMARY_COLOR } from '../../constant';
 
 const Profile = ({ navigation }) => {
   const insets = useSafeAreaInsets();
+  const avatar = MMKV.getString('avatar');
+  const name = MMKV.getString('name');
+  const username = MMKV.getString('username');
+  const [user_posts, setUsersPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchUserPosts = async () => {
+    const res = await API.post.getSelfPosts(username);
+    if (res) setUsersPosts(res.data);
+    setLoading(false);
+  };
 
   const onSignOut = () => {
     API.profile.logout();
     navigation.navigate('Home');
   };
+
+  useEffect(() => fetchUserPosts(), []);
+
+  if (loading)
+    return (
+      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+        <ActivityIndicator color={PRIMARY_COLOR} size="large" />
+      </View>
+    );
 
   return (
     <SafeAreaView
@@ -43,13 +67,15 @@ const Profile = ({ navigation }) => {
           ListHeaderComponent={
             <>
               <ProfileHeader
-                name=""
+                name={name}
                 navigation={navigation}
                 onSignOut={onSignOut}
               />
               <View style={styles.profile_pic}>
                 <Image
-                  source={Photographer}
+                  source={{
+                    uri: PUBLIC_API + avatar,
+                  }}
                   resizeMode="cover"
                   style={{
                     width: '100%',
@@ -58,16 +84,22 @@ const Profile = ({ navigation }) => {
                   }}
                 />
               </View>
-              <Text style={styles.username}>@Willson_je</Text>
+              <Text style={styles.username}>@{username}</Text>
               <InfoPanel />
             </>
           }
           showsVerticalScrollIndicator={false}
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-          renderItem={item => <MiniPost navigation={navigation} />}
+          data={user_posts}
+          renderItem={({ item }) => (
+            <MiniPost
+              navigation={navigation}
+              isSelf={true}
+              post_id={item.id}
+              img={item.picture.url}
+            />
+          )}
           keyExtractor={(item, index) => index.toString()}
           numColumns={3}
-          contentContainerStyle={{ alignItems: 'center' }}
           style={{ alignSelf: 'center' }}
         />
       </View>

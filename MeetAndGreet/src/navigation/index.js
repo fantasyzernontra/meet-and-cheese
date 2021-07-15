@@ -11,6 +11,7 @@ import DiscoverScreen from '../screens/discover';
 import AuthNavigator from './auth-navigator';
 import ProfileNavigator from './profile-navigator';
 import AccountNavigator from './account-navigator';
+import HiringNavigator from './hiring-navigator';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -39,7 +40,7 @@ const Tabs = ({ route, navigation }) => {
         inactiveTintColor: '#000',
         showLabel: false,
         style: {
-          opacity: 0.85,
+          opacity: 0.9,
           backgroundColor: '#FFF',
           position: 'absolute',
           bottom: selectedScreen !== 'Profile' ? 25 : 0,
@@ -121,6 +122,7 @@ const RootStackNavigator = () => {
       <RootStack.Screen name="Profile" component={ProfileNavigator} />
       <RootStack.Screen name="Auth" component={AuthNavigator} />
       <RootStack.Screen name="Account" component={AccountNavigator} />
+      <RootStack.Screen name="Hiring" component={HiringNavigator} />
     </RootStack.Navigator>
   );
 };

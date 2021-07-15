@@ -3,58 +3,64 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-import FeatherIcon from 'react-native-vector-icons/Feather';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { MMKV } from 'react-native-mmkv';
 
 import blurUtilitiesTools from '../../data/blur-utilities-tools';
 
-const BlurUtilitiesBar = ({
-  onFav,
-  onOpenComment,
-  onSave,
-  onForward,
-  fav,
-  comments,
-}) => {
+const BlurUtilitiesBar = ({ photographer_account_id, navigation }) => {
+  const user_type = MMKV.getString('user_type');
+
   return (
     <BlurView blurRadius={1} blurType="light" style={styles.toolContainer}>
       {blurUtilitiesTools.map((item, index) => {
-        return (
-          <TouchableOpacity onPress={() => console.log('Hi')} key={index}>
-            <View>
-              <BlurView
-                blurRadius={1}
-                blurType="light"
-                style={styles.button_container}>
-                {item.icon_provider === 'antdesign' && (
-                  <AntDesignIcon name={item.icon_name} size={23} color="#fff" />
+        if (item.icon_name === 'team' && user_type === '2') return;
+        else
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                if (item.icon_name === 'team')
+                  navigation.navigate('Hiring', {
+                    screen: 'Hiring',
+                    params: { photographer_account_id },
+                  });
+                else if (item.icon_name === 'account')
+                  navigation.navigate('Account', {
+                    screen: 'Account',
+                    params: { photographer_account_id },
+                  });
+              }}
+              key={index}>
+              <View>
+                <BlurView
+                  blurRadius={1}
+                  blurType="light"
+                  style={styles.button_container}>
+                  {item.icon_provider === 'antdesign' && (
+                    <AntDesignIcon
+                      name={item.icon_name}
+                      size={23}
+                      color="#fff"
+                    />
+                  )}
+                  {item.icon_provider === 'material_community' && (
+                    <MaterialCommunityIcons
+                      name={item.icon_name}
+                      size={23}
+                      color="#fff"
+                    />
+                  )}
+                </BlurView>
+                {item.icon_name === 'team' && (
+                  <Text style={styles.text}>Hiring</Text>
                 )}
-                {item.icon_provider === 'feather' && (
-                  <FeatherIcon name={item.icon_name} size={23} color="#fff" />
+                {item.icon_name === 'account' && (
+                  <Text style={styles.text}>View Profile</Text>
                 )}
-                {item.icon_provider === 'fontawesome' && (
-                  <FontAwesomeIcon
-                    name={item.icon_name}
-                    size={22}
-                    color="#fff"
-                  />
-                )}
-              </BlurView>
-              {item.icon_name === 'paper-plane' && (
-                <Text style={styles.text}>Forward</Text>
-              )}
-              {item.icon_name === 'bookmark' && (
-                <Text style={styles.text}>Save</Text>
-              )}
-              {item.icon_name === 'heart' && (
-                <Text style={styles.text}>1.2K</Text>
-              )}
-              {item.icon_name === 'message1' && (
-                <Text style={styles.text}>50</Text>
-              )}
-            </View>
-          </TouchableOpacity>
-        );
+              </View>
+            </TouchableOpacity>
+          );
       })}
     </BlurView>
   );
@@ -63,7 +69,7 @@ const BlurUtilitiesBar = ({
 const styles = StyleSheet.create({
   toolContainer: {
     position: 'absolute',
-    height: '70%',
+    height: '40%',
     width: '30%',
     alignSelf: 'center',
     borderRadius: 20,

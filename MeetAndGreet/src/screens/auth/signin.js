@@ -16,6 +16,8 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/core';
 import API from '../../api/path';
 
+import { PRIMARY_COLOR } from '../../constant';
+
 import Photographer from '../../assets/images/photographer.jpeg';
 
 const SignIn = ({}) => {
@@ -40,7 +42,7 @@ const SignIn = ({}) => {
   if (pending)
     return (
       <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-        <ActivityIndicator color="blue" size="large" />
+        <ActivityIndicator color={PRIMARY_COLOR} size="large" />
       </View>
     );
 

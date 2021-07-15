@@ -1,5 +1,4 @@
-import { BlurView } from '@react-native-community/blur';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
   View,
@@ -12,6 +11,8 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BlurView } from '@react-native-community/blur';
+
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -42,6 +43,7 @@ const SignUp = ({ navigation }) => {
   });
   const [errMessage, setErrMessage] = useState('');
   const [pending, setPending] = useState(false);
+  const [validated, setValidated] = useState(true);
 
   const onFill = (name, value) => {
     setInfo({ ...info, [name]: value });
@@ -58,6 +60,18 @@ const SignUp = ({ navigation }) => {
       setPending(false);
     }
   };
+
+  useEffect(() => {
+    if (
+      info.email.length !== 0 &&
+      info.firstname.length !== 0 &&
+      info.lastname.length !== 0 &&
+      info.password.length !== 0 &&
+      info.username.length !== 0
+    )
+      setValidated(false);
+    else setValidated(true);
+  }, [info]);
 
   if (pending)
     return (
@@ -212,8 +226,16 @@ const SignUp = ({ navigation }) => {
               />
             </View>
             <Text style={styles.err_message}>{errMessage}</Text>
-            <TouchableOpacity onPress={onSignUp} activeOpacity={0.8}>
-              <View style={styles.signup_button}>
+            <TouchableOpacity
+              disabled={validated}
+              onPress={onSignUp}
+              activeOpacity={0.8}>
+              <View
+                style={
+                  validated
+                    ? styles.inactive_signup_button
+                    : styles.active_signup_button
+                }>
                 <Text style={styles.signup_text}>Sign Up</Text>
               </View>
             </TouchableOpacity>
@@ -293,11 +315,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
   },
-  signup_button: {
+  active_signup_button: {
     width: '80%',
     height: 48,
     borderRadius: 20,
     backgroundColor: SECONDARY_COLOR,
+    marginTop: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  inactive_signup_button: {
+    width: '80%',
+    height: 48,
+    borderRadius: 20,
+    backgroundColor: 'grey',
     marginTop: 25,
     justifyContent: 'center',
     alignItems: 'center',

@@ -14,8 +14,11 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import API from '../../api/path';
 
 import StrapiRole from '../../data/strapi-role';
 import UserType from '../../data/user_type';

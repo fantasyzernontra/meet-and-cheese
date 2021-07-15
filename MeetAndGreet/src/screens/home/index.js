@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
+
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-
-import usePaddingBottom from '../../utils/usePaddingBottom';
-import useForceRender from '../../utils/useForceRender';
-
 import Post from '../../components/home/post';
 import MiniAccountBox from '../../components/mini-account-box';
+
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import usePaddingBottom from '../../utils/usePaddingBottom';
+import useForceRender from '../../utils/useForceRender';
+import API from '../../api/path';
 
 const Index = ({ route, navigation }) => {
   const insets = useSafeAreaInsets();
   const tabBarHeight = useBottomTabBarHeight();
+  const [posts, setPosts] = useState([]);
+
+  const fetchAllPosts = async () => {
+    const res = await API.post.getAllPosts();
+    if (res) setPosts(res.data);
+  };
 
   useForceRender(navigation);
+
+  useEffect(() => fetchAllPosts(), []);
 
   return (
     <SafeAreaView
@@ -36,8 +45,15 @@ const Index = ({ route, navigation }) => {
         </View>
 
         {/* Post */}
-        {[...Array(2)].map((_, index) => (
-          <Post key={index} />
+        {posts.map((item, index) => (
+          <Post
+            key={index}
+            navigation={navigation}
+            name={item.user.username}
+            picture={item.picture}
+            captions={item.captions}
+            photographer_id={item.user.id}
+          />
         ))}
 
         {/* Padding Bottom */}

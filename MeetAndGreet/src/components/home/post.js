@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Image,
@@ -9,18 +9,30 @@ import {
 } from 'react-native';
 import BlurUtilitiesBar from './blur-utilities-bar';
 
-import Photographer from '../../assets/images/photographer.jpeg';
+import PUBLIC_API from '../../data/public-api';
+import API from '../../api/path';
 
-const Post = ({ picture, name, id, user_type }) => {
+const Post = ({ picture, name, photographer_id, captions, navigation }) => {
+  const [photographer, setPhotographer] = useState({});
+
+  const getPhotographer = async () => {
+    const res = await API.photographer.getOnePhotographer(photographer_id);
+    if (res) setPhotographer(res.data);
+  };
+
+  useEffect(() => getPhotographer(), []);
+
   return (
-    <View
-      style={{
-        ...styles.container,
-      }}>
-      <BlurUtilitiesBar />
+    <View style={styles.container}>
+      <BlurUtilitiesBar
+        navigation={navigation}
+        photographer_account_id={photographer.id}
+      />
       <ImageBackground
         style={styles.imageBackgroundContainer}
-        source={Photographer}
+        source={{
+          uri: PUBLIC_API + picture.url,
+        }}
         resizeMode="cover"
         imageStyle={{ opacity: 0.6 }}>
         <View
@@ -29,29 +41,22 @@ const Post = ({ picture, name, id, user_type }) => {
             alignItems: 'center',
             marginVertical: 3,
           }}>
-          <Image
-            source={Photographer}
-            resizeMode="cover"
-            style={{ width: 35, height: 35, borderRadius: 25 }}
-          />
-          <Text style={styles.name}>John Doe</Text>
+          {photographer.avatar && (
+            <Image
+              source={{
+                uri: PUBLIC_API + photographer.avatar.url,
+              }}
+              resizeMode="cover"
+              style={{ width: 35, height: 35, borderRadius: 25 }}
+            />
+          )}
+          <Text style={styles.name}>{name}</Text>
         </View>
 
         <View style={{ marginVertical: 3 }}>
           <Text style={styles.description} numberOfLines={2}>
-            {'\t'}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            {captions}
           </Text>
-        </View>
-        <View style={{ marginVertical: 3, flexDirection: 'row' }}>
-          <Text style={styles.hashTag}>#photgrapher</Text>
-          <Text style={styles.hashTag}>#noice</Text>
-          <Text style={styles.hashTag}>#ilovechonlameth</Text>
         </View>
       </ImageBackground>
     </View>
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
       width: 3,
       height: 4,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 4,
     shadowRadius: 4,
     elevation: 5,
     alignSelf: 'center',

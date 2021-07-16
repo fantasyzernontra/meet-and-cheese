@@ -22,8 +22,8 @@
       "plugin": "users-permissions",
       "model": "user"
     },
-    "description": {
-      "type": "text"
+    "location": {
+      "type": "string"
     },
     "start_date": {
       "type": "datetime"

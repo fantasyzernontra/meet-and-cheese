@@ -23,7 +23,7 @@ module.exports = {
       },
       basePath: "",
       baseUrl:
-        "https://storage.googleapis.com/asia.artifacts.meet-and-cheese.appspot.com",
+        "gs://asia.artifacts.meet-and-cheese.appspot.com",
     },
   },
 };

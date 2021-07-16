@@ -31,10 +31,7 @@
     "end_date": {
       "type": "datetime"
     },
-    "title": {
-      "type": "string"
-    },
-    "address": {
+    "work_description": {
       "type": "text"
     }
   }

@@ -22,8 +22,7 @@ module.exports = {
           "https://www.googleapis.com/robot/v1/metadata/x509/meet-and-cheese-storage-admin%40meet-and-cheese.iam.gserviceaccount.com",
       },
       basePath: "",
-      baseUrl:
-        "gs://asia.artifacts.meet-and-cheese.appspot.com",
+      baseUrl: "gs://asia.artifacts.meet-and-cheese.appspot.com",
     },
   },
 };

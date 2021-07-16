@@ -3,7 +3,7 @@ module.exports = {
     provider: "google-cloud-storage",
     providerOptions: {
       bucketName: "asia.artifacts.meet-and-cheese.appspot.com",
-      publicFiles: false,
+      publicFiles: true,
       uniform: false,
       serviceAccount: {
         type: "service_account",
@@ -22,6 +22,8 @@ module.exports = {
           "https://www.googleapis.com/robot/v1/metadata/x509/meet-and-cheese-storage-admin%40meet-and-cheese.iam.gserviceaccount.com",
       },
       basePath: "",
+      baseUrl:
+        "https://storage.googleapis.com/asia.artifacts.meet-and-cheese.appspot.com",
     },
   },
 };

@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 
-import Model from '../assets/images/model.jpeg';
+import PUBLIC_API from '../data/public-api';
 
 const Label = ({ like }) => {
   return (
@@ -18,18 +18,21 @@ const Label = ({ like }) => {
   );
 };
 
-const MiniPost = ({ img, like, navigation }) => {
+const MiniPost = ({ img, like, navigation, isSelf, post_id }) => {
   return (
     <TouchableOpacity
       style={styles.container}
       activeOpacity={0.8}
-      onPress={() => navigation.navigate('ProfilePost', {})}>
+      onPress={() => {
+        if (isSelf) navigation.navigate('ProfilePost', { post_id });
+        else navigation.navigate('Post', { post_id });
+      }}>
       <ImageBackground
-        source={Model}
+        source={{
+          uri: PUBLIC_API + img,
+        }}
         style={styles.imageBackground}
-        imageStyle={styles.imageBackgroundStyle}>
-        <Label like={100} />
-      </ImageBackground>
+        imageStyle={styles.imageBackgroundStyle}></ImageBackground>
     </TouchableOpacity>
   );
 };
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     margin: 2,
-    borderRadius: 20,
+    borderRadius: 30,
   },
   imageBackground: {
     width: '100%',
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   imageBackgroundStyle: {
-    borderRadius: 20,
+    borderRadius: 30,
   },
   labelContainer: {
     width: 80,

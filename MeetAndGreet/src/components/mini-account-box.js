@@ -4,10 +4,10 @@ import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 
 import { MMKV } from 'react-native-mmkv';
 
-import Profile from '../assets/images/model.jpeg';
-
 const MiniAccountBox = ({ navigation }) => {
   const isAuth = MMKV.getString('token');
+  const username = MMKV.getString('username');
+  const avatar = MMKV.getString('avatar');
 
   return (
     <TouchableOpacity
@@ -24,16 +24,24 @@ const MiniAccountBox = ({ navigation }) => {
         />
       )}
       {isAuth && (
-        <Image source={Profile} resizeMode="cover" style={styles.profile} />
+        <Image
+          source={{
+            uri: 'https://meet-and-cheese-6m5djqivha-as.a.run.app' + avatar,
+          }}
+          resizeMode="cover"
+          style={styles.profile}
+        />
       )}
-      <Text style={styles.username}>{isAuth ? 'Panyot' : 'Sign In'}</Text>
+      <Text style={styles.username} numberOfLines={1}>
+        {isAuth ? username : 'Sign In'}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: 110,
+    width: 120,
     height: 40,
     backgroundColor: '#eee',
     alignItems: 'center',
@@ -57,7 +65,7 @@ const styles = StyleSheet.create({
   },
   username: {
     fontFamily: 'NanumGothic',
-    fontSize: 16,
+    fontSize: 11,
     color: '#000',
   },
 });

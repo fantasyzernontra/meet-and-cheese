@@ -90,7 +90,7 @@ const Discover = ({ navigation }) => {
                 navigation={navigation}
                 photographer_account_id={item.id}
                 username={item.username}
-                pic={item.avatar.url}
+                pic={item.avatar ? item.avatar.url : null}
                 style={{ width: '100%', marginTop: 20 }}
                 keyExtractor={(item, index) => index.toString()}
                 ListFooterComponent={usePaddingBottom(bottomNavHeight + 10)}

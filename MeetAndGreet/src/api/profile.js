@@ -27,13 +27,13 @@ export default {
   },
   signup: async info => {
     const preprocessed_data = info;
-    preprocessed_data.name = info.firstname + info.lastname;
+    preprocessed_data.name = info.firstname;
     const res = await API.post('/auth/local/register', preprocessed_data);
     if (res) return res;
   },
   signup_photographer: async info => {
     const preprocessed_data = info;
-    preprocessed_data.name = info.firstname + info.lastname;
+    preprocessed_data.name = info.firstname;
     const res = await API.post('/auth/local/register', preprocessed_data);
     if (res) return res;
   },
@@ -57,7 +57,7 @@ export default {
       },
     });
 
-    console.log('hi')
+    console.log('hi');
     console.log(picRes);
 
     return await API.put(`/users/${account_id}`, { avatar: picRes.data[0]._id })

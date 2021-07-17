@@ -24,13 +24,15 @@ const PhotographerList = ({
           params: { photographer_account_id },
         })
       }>
-      <Image
-        source={{
-          uri: PUBLIC_API + pic.replace('gs://', ''),
-        }}
-        resizeMode="cover"
-        style={{ width: '30%', height: '100%', borderRadius: 50 }}
-      />
+      {pic && (
+        <Image
+          source={{
+            uri: PUBLIC_API + pic.replace('gs://', ''),
+          }}
+          resizeMode="cover"
+          style={{ width: '30%', height: '100%', borderRadius: 50 }}
+        />
+      )}
       <View stlye={styles.label_container}>
         <Text style={styles.username_label}>@{username}</Text>
       </View>

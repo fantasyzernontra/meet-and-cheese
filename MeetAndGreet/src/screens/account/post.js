@@ -44,15 +44,15 @@ const Post = ({ route, navigation }) => {
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={styles.title}>{post.title}</Text>
-            <TouchableOpacity activeOpacity={0.7}>
+            {post.user.avatar && (
               <Image
                 source={{
-                  uri: PUBLIC_API + post.user.avatar.url,
+                  uri: PUBLIC_API + post.user.avatar.url.replace('gs://', ''),
                 }}
                 style={{ width: 35, height: 35, borderRadius: 17.5 }}
                 resizeMode="cover"
               />
-            </TouchableOpacity>
+            )}
           </View>
           <Text style={styles.description}>{post.captions}</Text>
           {/* <View style={styles.chip_container}>

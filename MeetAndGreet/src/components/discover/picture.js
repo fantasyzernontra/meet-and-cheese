@@ -7,18 +7,17 @@ import {
   Dimensions,
 } from 'react-native';
 
-import Photographer from '../../assets/images/photographer.jpeg';
+import PUBLIC_API from '../../data/public-api';
 
-const Picture = ({ navigation, PostID }) => {
+const Picture = ({ navigation, img, post_id }) => {
   return (
     <TouchableWithoutFeedback
       onPress={() =>
-        navigation.navigate('Account', { PostID: '', screen: 'Post' })
+        navigation.navigate('Account', { params: { post_id }, screen: 'Post' })
       }>
       <View style={styles.container}>
         <Image
-          source={Photographer}
-          // source={{ uri: '' }}
+          source={{ uri: PUBLIC_API + img.replace('gs://', '') }}
           style={{ width: '100%', height: '100%' }}
           resizeMode="cover"
         />

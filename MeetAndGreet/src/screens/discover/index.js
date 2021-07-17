@@ -1,24 +1,51 @@
-import React from 'react';
-import {
-  View,
-  ScrollView,
-  TextInput,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, TextInput, FlatList, StyleSheet } from 'react-native';
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
+import Picture from '../../components/discover/picture';
+import PhotographerList from '../../components/discover/photographer-list';
+
+import API from '../../api/path';
 import usePaddingBottom from '../../utils/usePaddingBottom';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-
-import Picture from '../../components/discover/picture';
+import { SECONDARY_COLOR } from '../../constant';
 
 const Discover = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const bottomNavHeight = useBottomTabBarHeight();
+  const [posts, setPosts] = useState([]);
+  const [photographers, setPhotographers] = useState([]);
+  const [searchEvidence, setSearchEvidence] = useState('');
+  const [isSearch, setIsSearch] = useState(false);
+  const [searchStatus, setSearchStatus] = useState(
+    'Searching ' + searchEvidence + ' ...',
+  );
+
+  const fetchAllPosts = async () => {
+    const res = await API.post.getAllPosts();
+    if (res) setPosts(res.data);
+  };
+
+  const onTyping = val => {
+    setSearchStatus(`Searching ${val} ...`);
+    setSearchEvidence(val);
+  };
+
+  const onSearch = async () => {
+    const res = await API.photographer.searchPhotographers(searchEvidence);
+    if (res) setPhotographers(res.data);
+    setSearchStatus('Searched Results');
+  };
+
+  useEffect(() => fetchAllPosts(), []);
+
+  useEffect(() => {
+    if (searchEvidence.length === 0) setIsSearch(false);
+    else setIsSearch(true);
+  }, [searchEvidence]);
 
   return (
     <SafeAreaView
@@ -31,19 +58,47 @@ const Discover = ({ navigation }) => {
         style={styles.input}
         selectionColor="#64bfa4"
         placeholder="Search a photographer"
+        onChangeText={onTyping}
+        value={searchEvidence}
+        onSubmitEditing={onSearch}
       />
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={[
-          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-          1, 1, 1, 1,
-        ]}
-        renderItem={item => <Picture navigation={navigation} />}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={3}
-        style={{ width: '100%', marginTop: 20 }}
-        ListFooterComponent={usePaddingBottom(bottomNavHeight + 10)}
-      />
+      {!isSearch && (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={posts}
+          renderItem={({ item }) => (
+            <Picture
+              navigation={navigation}
+              img={item.picture.url}
+              post_id={item.id}
+            />
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={3}
+          style={{ width: '100%', marginTop: 20 }}
+          ListFooterComponent={usePaddingBottom(bottomNavHeight + 10)}
+        />
+      )}
+      {isSearch && (
+        <>
+          <Text style={styles.search_label}>{searchStatus}</Text>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={photographers}
+            renderItem={({ item }) => (
+              <PhotographerList
+                navigation={navigation}
+                photographer_account_id={item.id}
+                username={item.username}
+                pic={item.avatar.url}
+                style={{ width: '100%', marginTop: 20 }}
+                keyExtractor={(item, index) => index.toString()}
+                ListFooterComponent={usePaddingBottom(bottomNavHeight + 10)}
+              />
+            )}
+          />
+        </>
+      )}
     </SafeAreaView>
   );
 };
@@ -69,6 +124,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  search_label: {
+    fontFamily: 'NanumGothic',
+    fontSize: 18,
+    fontWeight: '900',
+    color: SECONDARY_COLOR,
+    marginTop: 20,
+    alignSelf: 'flex-start',
+    left: 20,
   },
 });
 

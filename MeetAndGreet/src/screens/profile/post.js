@@ -15,8 +15,6 @@ import PostChip from '../../components/post-chip';
 import API from '../../api/path';
 import useForceRender from '../../utils/useForceRender';
 
-import Model from '../../assets/images/model.jpeg';
-
 import PUBLIC_API from '../../data/public-api';
 import { PRIMARY_COLOR } from '../../constant';
 
@@ -53,7 +51,7 @@ const Post = ({ navigation, route }) => {
             <TouchableOpacity activeOpacity={0.7}>
               <Image
                 source={{
-                  uri: PUBLIC_API + post.user.avatar.url,
+                  uri: PUBLIC_API + post.user.avatar.url.replace('gs://', ''),
                 }}
                 style={{ width: 35, height: 35, borderRadius: 17.5 }}
                 resizeMode="cover"

@@ -9,7 +9,10 @@ import {
 import Post from '../../components/home/post';
 import MiniAccountBox from '../../components/mini-account-box';
 
+import { useIsFocused } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { MMKV } from 'react-native-mmkv';
+
 import usePaddingBottom from '../../utils/usePaddingBottom';
 import useForceRender from '../../utils/useForceRender';
 import API from '../../api/path';
@@ -18,15 +21,22 @@ const Index = ({ route, navigation }) => {
   const insets = useSafeAreaInsets();
   const tabBarHeight = useBottomTabBarHeight();
   const [posts, setPosts] = useState([]);
+  const isFocused = useIsFocused();
+  const user_id = MMKV.getString('user_id');
 
   const fetchAllPosts = async () => {
     const res = await API.post.getAllPosts();
-    if (res) setPosts(res.data);
+    if (res) {
+      const temp = res.data.filter(item => item.user.id !== user_id);
+      setPosts(temp);
+    }
   };
 
   useForceRender(navigation);
 
   useEffect(() => fetchAllPosts(), []);
+
+  useEffect(() => fetchAllPosts(), [isFocused]);
 
   return (
     <SafeAreaView

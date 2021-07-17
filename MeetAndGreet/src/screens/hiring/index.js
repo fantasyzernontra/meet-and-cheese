@@ -10,14 +10,17 @@ import {
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DatePickerModal from '../../components/hiring/date-picker';
+import SendingSuccessModal from '../../components/hiring/sending-success';
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 
 import useForceRender from '../../utils/useForceRender';
 import API from '../../api/path';
+import { MMKV } from 'react-native-mmkv';
 
 import { PRIMARY_COLOR, WHITE_TEXT_COLOR } from '../../constant';
 
 const HiringIndex = ({ route, navigation, account_id }) => {
+  const user_id = MMKV.getString('user_id');
   const [photographerInfo, setPhotographerInfo] = useState({});
   const [workDescription, setWorkDescription] = useState('');
   const [location, setLocation] = useState('');
@@ -29,6 +32,7 @@ const HiringIndex = ({ route, navigation, account_id }) => {
   const [validated, setValidated] = useState(true);
   const [landingTime] = useState(new Date().getTime());
   const photographer_account_id = route.params.photographer_account_id;
+  const [onSucces, setOnSuccess] = useState(false);
 
   const onFill = (name, val) => {
     if (name === 'work-description') setWorkDescription(val);
@@ -42,7 +46,17 @@ const HiringIndex = ({ route, navigation, account_id }) => {
     if (res) setPhotographerInfo(res.data);
   };
 
-  const onSendRequisition = async () => {};
+  const onSendRequisition = async () => {
+    await API.hiring_contracts.submitHiring(
+      user_id,
+      photographer_account_id,
+      workDescription,
+      location,
+      startWorkingDate,
+      endWorkingDate,
+    );
+    setOnSuccess(true);
+  };
 
   useEffect(() => {
     if (
@@ -165,13 +179,17 @@ const HiringIndex = ({ route, navigation, account_id }) => {
                 ? styles.inactive_submit_requisition_button
                 : styles.active_submit_requisition_button
             }
-            onPress={() => {}}>
+            onPress={onSendRequisition}>
             <Text style={styles.submit_requisition_label}>
               Send the requisition
             </Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
+      <SendingSuccessModal
+        isVisible={onSucces}
+        onSuccess={() => navigation.navigate('Home')}
+      />
     </SafeAreaView>
   );
 };

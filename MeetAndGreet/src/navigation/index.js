@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/core';
@@ -7,6 +13,7 @@ import { MMKV } from 'react-native-mmkv';
 
 import HomeScreen from '../screens/home';
 import DiscoverScreen from '../screens/discover';
+import CreatingPost from '../screens/account/create-post';
 
 import AuthNavigator from './auth-navigator';
 import ProfileNavigator from './profile-navigator';
@@ -15,21 +22,26 @@ import HiringNavigator from './hiring-navigator';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IoniconIcons from 'react-native-vector-icons/Ionicons';
 
-import { SECONDARY_COLOR } from '../constant';
+import useForceRender from '../utils/useForceRender';
+
+import { WHITE_TEXT_COLOR, SECONDARY_COLOR } from '../constant';
 
 const Tab = createBottomTabNavigator();
 const RootStack = createStackNavigator();
 
-const isAuth = MMKV.getString('token');
-
 const Tabs = ({ route, navigation }) => {
   const [selectedScreen, setSelectedScreen] = useState('Home');
   const focused = getFocusedRouteNameFromRoute(route);
+  const isAuth = MMKV.getString('token');
+  const user_type = MMKV.getString('user_type');
 
   useEffect(() => {
     setSelectedScreen(focused);
   }, [route]);
+
+  useForceRender(navigation);
 
   return (
     <Tab.Navigator
@@ -40,12 +52,11 @@ const Tabs = ({ route, navigation }) => {
         inactiveTintColor: '#000',
         showLabel: false,
         style: {
-          opacity: 0.9,
           backgroundColor: '#FFF',
           position: 'absolute',
           bottom: selectedScreen !== 'Profile' ? 25 : 0,
-          left: 40,
-          right: 40,
+          left: 15,
+          right: 15,
           elevation: 0,
           borderRadius: 30,
           height: 75,
@@ -111,6 +122,33 @@ const Tabs = ({ route, navigation }) => {
           tabBarVisible: false,
         }}
       />
+      {user_type === '2' && (
+        <Tab.Screen
+          name="CreatingPostTabBar"
+          component={CreatingPost}
+          options={{
+            tabBarIcon: ({ focused, color }) => {
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() =>
+                    navigation.navigate('Account', { screen: 'CreatingPost' })
+                  }>
+                  <View style={styles.create_post_style}>
+                    <IoniconIcons
+                      name="create-outline"
+                      size={25}
+                      color={WHITE_TEXT_COLOR}
+                      style={{ alignItems: 'center', alignSelf: 'center' }}
+                    />
+                    <Text style={styles.create_post_label}>Write a post</Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            },
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 };
@@ -166,6 +204,31 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: 'NanumGothic',
     fontWeight: '500',
+  },
+  create_post_style: {
+    alignSelf: 'center',
+    width: 90,
+    height: 50,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: SECONDARY_COLOR,
+    borderRadius: 20,
+    shadowColor: 'grey',
+    shadowOffset: {
+      width: 2,
+      height: 3,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    elevation: 10,
+    right: 10,
+  },
+  create_post_label: {
+    fontFamily: 'NanumGothic',
+    fontSize: 13,
+    color: WHITE_TEXT_COLOR,
+    textAlign: 'center',
   },
 });
 

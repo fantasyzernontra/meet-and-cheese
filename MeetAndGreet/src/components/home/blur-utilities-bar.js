@@ -11,11 +11,16 @@ import blurUtilitiesTools from '../../data/blur-utilities-tools';
 
 const BlurUtilitiesBar = ({ photographer_account_id, navigation }) => {
   const user_type = MMKV.getString('user_type');
+  const isAuth = MMKV.getString('token');
 
   return (
     <BlurView blurRadius={1} blurType="light" style={styles.toolContainer}>
       {blurUtilitiesTools.map((item, index) => {
-        if (item.icon_name === 'team' && user_type === '2') return;
+        if (
+          (item.icon_name === 'team' && user_type === '2') ||
+          (item.icon_name === 'team' && !isAuth)
+        )
+          return;
         else
           return (
             <TouchableOpacity

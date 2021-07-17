@@ -39,7 +39,6 @@ export default {
   },
   upload_profile_pic: async (pic, account_id) => {
     const form = new FormData();
-
     form.append(
       `files`,
       {
@@ -50,14 +49,16 @@ export default {
       pic.fileName,
     );
 
-    const picRes = await API({
-      url: `/upload`,
-      method: 'POST',
-      data: form,
+    console.log(pic);
+
+    const picRes = await API.post('/upload', form, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
+
+    console.log('hi')
+    console.log(picRes);
 
     return await API.put(`/users/${account_id}`, { avatar: picRes.data[0]._id })
       .then(res => res)

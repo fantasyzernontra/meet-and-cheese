@@ -26,7 +26,7 @@ const ImagePreview = ({ img, onPress }) => {
           height: '100%',
           borderRadius: 30,
         }}
-        resizeMode="stretch"
+        resizeMode="cover"
       />
     </TouchableOpacity>
   );

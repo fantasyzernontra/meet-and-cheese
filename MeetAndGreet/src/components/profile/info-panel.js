@@ -7,9 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
+
+import { MMKV } from 'react-native-mmkv';
+
 import { SECONDARY_COLOR, WHITE_TEXT_COLOR } from '../../constant';
 
 const InfoPanel = ({ hiring, navigation }) => {
+  const user_type = MMKV.getString('user_type');
+
   return (
     <View style={styles.container}>
       <View style={styles.info_container}>
@@ -24,15 +29,17 @@ const InfoPanel = ({ hiring, navigation }) => {
         </View>
         <Text style={styles.text}>Hiring</Text>
       </View>
-      <View style={styles.info_container}>
-        <TouchableOpacity
-          style={styles.view_hiring_button}
-          onPress={() =>
-            navigation.navigate('Hiring', { screen: 'HiringList' })
-          }>
-          <Text style={styles.view_hiring_label}>View Hiring</Text>
-        </TouchableOpacity>
-      </View>
+      {user_type === '2' && (
+        <View style={styles.info_container}>
+          <TouchableOpacity
+            style={styles.view_hiring_button}
+            onPress={() =>
+              navigation.navigate('Hiring', { screen: 'HiringList' })
+            }>
+            <Text style={styles.view_hiring_label}>View Hiring</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };

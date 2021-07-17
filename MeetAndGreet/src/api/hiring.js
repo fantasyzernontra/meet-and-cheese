@@ -9,6 +9,10 @@ export default {
     const res = await API.get(`/hiring-contracts?hired=${account_id}`);
     if (res) return res;
   },
+  getOneHiring: async hiring_id => {
+    const res = await API.get(`/hiring-contracts/${hiring_id}`);
+    if (res) return res;
+  },
   submitHiring: async (
     user_id,
     photographer_id,

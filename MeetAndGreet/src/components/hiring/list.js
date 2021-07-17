@@ -41,7 +41,7 @@ const List = ({
         onPress={() => {
           navigation.navigate('HiringDetails', { hiring_id });
         }}>
-        <AntDesignIcon name="right" color="#000" size={25} />
+        <AntDesignIcon name="arrowright" color="#000" size={25} />
       </TouchableOpacity>
     </View>
   );
@@ -50,9 +50,10 @@ const List = ({
 const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 1,
-    borderColor: '#000',
+    borderColor: '#C1C1C1',
     height: 100,
     padding: 10,
+    paddingHorizontal: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

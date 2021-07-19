@@ -1,13 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 
-const InfoPanel = ({ following, followers, like }) => {
+import { MMKV } from 'react-native-mmkv';
+
+import { SECONDARY_COLOR, WHITE_TEXT_COLOR } from '../../constant';
+
+const InfoPanel = ({ hiring, navigation }) => {
+  const user_type = MMKV.getString('user_type');
+
   return (
     <View style={styles.container}>
       <View style={styles.info_container}>
         <View style={styles.number_container}>
-          <Text style={styles.number}>29</Text>
+          <Text style={styles.number}>{hiring}</Text>
           <AntdesignIcon
             name="team"
             color="#0DA2FF"
@@ -17,6 +29,17 @@ const InfoPanel = ({ following, followers, like }) => {
         </View>
         <Text style={styles.text}>Hiring</Text>
       </View>
+      {user_type === '2' && (
+        <View style={styles.info_container}>
+          <TouchableOpacity
+            style={styles.view_hiring_button}
+            onPress={() =>
+              navigation.navigate('Hiring', { screen: 'HiringList' })
+            }>
+            <Text style={styles.view_hiring_label}>View Hiring</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -48,6 +71,16 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 14,
     color: '#808080',
+  },
+  view_hiring_button: {
+    backgroundColor: SECONDARY_COLOR,
+    borderRadius: 12,
+    padding: 14,
+  },
+  view_hiring_label: {
+    fontFamily: 'NanumGothic',
+    fontSize: 16,
+    color: WHITE_TEXT_COLOR,
   },
 });
 

@@ -13,12 +13,12 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import { PRIMARY_COLOR } from '../../constant/index';
 
-const InfoPanel = ({ navigation, photographer_account_id }) => {
+const InfoPanel = ({ navigation, photographer_account_id, hiring }) => {
   return (
     <View style={styles.container}>
       <View style={styles.info_container1}>
         <View style={styles.number_container1}>
-          <Text style={styles.number}>29</Text>
+          <Text style={styles.number}>{hiring}</Text>
           <AntdesignIcon
             name="team"
             color="#0DA2FF"

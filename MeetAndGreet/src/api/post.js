@@ -13,4 +13,32 @@ export default {
     const res = await API.get(`/posts/${post_id}`);
     if (res) return res;
   },
+  createPost: async (pic, title, captions, account_id) => {
+    const form = new FormData();
+    form.append(
+      'files',
+      {
+        uri: pic.uri.replace('file://', ''),
+        type: pic.type,
+        name: pic.fileName,
+      },
+      pic.fileName,
+    );
+
+    const picRes = await API.post('/upload', form, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    const body = {
+      user: account_id,
+      picture: picRes.data[0].id,
+      title,
+      captions,
+    };
+
+    const res = await API.post('/posts', body);
+    if (res) return res;
+  },
 };

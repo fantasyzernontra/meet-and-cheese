@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 import AntdesignIcon from 'react-native-vector-icons/AntDesign';
 
 import { MMKV } from 'react-native-mmkv';
+import publicApi from '../data/public-api';
 
 const MiniAccountBox = ({ navigation }) => {
   const isAuth = MMKV.getString('token');
@@ -23,10 +24,10 @@ const MiniAccountBox = ({ navigation }) => {
           style={{ alignContent: 'flex-start' }}
         />
       )}
-      {isAuth && (
+      {isAuth && avatar && (
         <Image
           source={{
-            uri: 'https://meet-and-cheese-6m5djqivha-as.a.run.app' + avatar,
+            uri: publicApi + avatar.replace('gs://', ''),
           }}
           resizeMode="cover"
           style={styles.profile}

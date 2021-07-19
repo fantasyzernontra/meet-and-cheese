@@ -29,7 +29,7 @@ const MiniPost = ({ img, like, navigation, isSelf, post_id }) => {
       }}>
       <ImageBackground
         source={{
-          uri: PUBLIC_API + img,
+          uri: PUBLIC_API + img.replace('gs://', ''),
         }}
         style={styles.imageBackground}
         imageStyle={styles.imageBackgroundStyle}></ImageBackground>
@@ -39,7 +39,7 @@ const MiniPost = ({ img, like, navigation, isSelf, post_id }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('screen').width * 0.3,
+    width: Dimensions.get('screen').width * 0.31,
     height: 180,
     alignItems: 'center',
     shadowColor: '#000',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    margin: 2,
+    margin: 4,
     borderRadius: 30,
   },
   imageBackground: {

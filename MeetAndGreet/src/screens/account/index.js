@@ -25,6 +25,7 @@ const AccountPage = ({ route, navigation }) => {
   const insets = useSafeAreaInsets();
   const photographer_account_id = route.params.photographer_account_id;
   const [photographerInfo, setPhotographerInfo] = useState({});
+  const [hiringAmount, setHiringAmount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const fetchPhotograpger = async () => {
@@ -32,10 +33,20 @@ const AccountPage = ({ route, navigation }) => {
       photographer_account_id,
     );
     if (res) setPhotographerInfo(res.data);
+  };
+
+  const fetchPhotographerHiringAmount = async () => {
+    const res = await API.hiring_contracts.getAmountOfHiring(
+      photographer_account_id,
+    );
+    if (res) setHiringAmount(res.data);
     setLoading(false);
   };
 
-  useEffect(() => fetchPhotograpger(), []);
+  useEffect(() => {
+    fetchPhotograpger();
+    fetchPhotographerHiringAmount();
+  }, []);
 
   if (loading)
     return (
@@ -59,22 +70,27 @@ const AccountPage = ({ route, navigation }) => {
             <>
               <Header navigation={navigation} name={photographerInfo.name} />
               <View style={styles.profile_pic}>
-                <Image
-                  source={{
-                    uri: PUBLIC_API + photographerInfo.avatar.url,
-                  }}
-                  resizeMode="cover"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 100,
-                  }}
-                />
+                {photographerInfo.avatar && (
+                  <Image
+                    source={{
+                      uri:
+                        PUBLIC_API +
+                        photographerInfo.avatar.url.replace('gs://', ''),
+                    }}
+                    resizeMode="cover"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: 100,
+                    }}
+                  />
+                )}
               </View>
               <Text style={styles.username}>@{photographerInfo.username}</Text>
               <InfoPanel
                 navigation={navigation}
                 photographer_account_id={photographerInfo.id}
+                hiring={hiringAmount}
               />
             </>
           }

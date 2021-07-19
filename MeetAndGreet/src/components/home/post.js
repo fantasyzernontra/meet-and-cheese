@@ -31,7 +31,7 @@ const Post = ({ picture, name, photographer_id, captions, navigation }) => {
       <ImageBackground
         style={styles.imageBackgroundContainer}
         source={{
-          uri: PUBLIC_API + picture.url,
+          uri: PUBLIC_API + picture.url.replace('gs://', ''),
         }}
         resizeMode="cover"
         imageStyle={{ opacity: 0.6 }}>
@@ -44,7 +44,7 @@ const Post = ({ picture, name, photographer_id, captions, navigation }) => {
           {photographer.avatar && (
             <Image
               source={{
-                uri: PUBLIC_API + photographer.avatar.url,
+                uri: PUBLIC_API + photographer.avatar.url.replace('gs://', ''),
               }}
               resizeMode="cover"
               style={{ width: 35, height: 35, borderRadius: 25 }}

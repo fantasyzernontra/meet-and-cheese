@@ -3,7 +3,7 @@ name: Meet and Cheese API Deployment (Development)
 on: 
   push:
     branches:
-      - master
+      - complete
 
 env: 
   FOLDER: meet-and-cheese-api
